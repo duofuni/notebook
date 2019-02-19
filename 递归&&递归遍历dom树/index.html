@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">阿法尔<span>31342354<i></i></span></div>
+    <script type="text/javascript">
+        function get_dom_tree(root, fn) {
+            fn(root); // 拿到节点
+            var childrens = root.children; // 获取子节点
+            for (var i = 0; i < childrens.length; i++) {
+                fn(childrens[i]); // 拿到子节点
+                childrens[i].children && get_dom_tree(childrens[i], fn); // 如果还有子节点则递归
+            };
+        };
+        // get_dom_tree(document.documentElement, function (node) {
+        //     console.log(`节点的名字：${node.nodeName}`);
+        // });
+        get_dom_tree(document.getElementById('box'), function (node) {
+            console.log(`节点的名字：${node.nodeName}`);
+        });
+    </script>
+</body>
+
+</html>
